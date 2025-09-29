@@ -298,6 +298,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""86642130-56ab-43a0-ae35-536fe1bfa02d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -342,6 +351,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Navigate2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e63a87a-beef-43b5-8594-70f57e89b5c4"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -426,6 +446,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_UI_Navigate2 = m_UI.FindAction("Navigate2", throwIfNotFound: true);
         m_UI_ChangeWASD = m_UI.FindAction("ChangeWASD", throwIfNotFound: true);
         m_UI_ChangeC = m_UI.FindAction("ChangeC", throwIfNotFound: true);
+        m_UI_OpenInventory = m_UI.FindAction("OpenInventory", throwIfNotFound: true);
     }
 
     ~@PlayerControl()
@@ -591,6 +612,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Navigate2;
     private readonly InputAction m_UI_ChangeWASD;
     private readonly InputAction m_UI_ChangeC;
+    private readonly InputAction m_UI_OpenInventory;
     public struct UIActions
     {
         private @PlayerControl m_Wrapper;
@@ -599,6 +621,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Navigate2 => m_Wrapper.m_UI_Navigate2;
         public InputAction @ChangeWASD => m_Wrapper.m_UI_ChangeWASD;
         public InputAction @ChangeC => m_Wrapper.m_UI_ChangeC;
+        public InputAction @OpenInventory => m_Wrapper.m_UI_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -620,6 +643,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @ChangeC.started += instance.OnChangeC;
             @ChangeC.performed += instance.OnChangeC;
             @ChangeC.canceled += instance.OnChangeC;
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -636,6 +662,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @ChangeC.started -= instance.OnChangeC;
             @ChangeC.performed -= instance.OnChangeC;
             @ChangeC.canceled -= instance.OnChangeC;
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -714,5 +743,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnNavigate2(InputAction.CallbackContext context);
         void OnChangeWASD(InputAction.CallbackContext context);
         void OnChangeC(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
 }

@@ -217,35 +217,35 @@ public class PlayerC : MonoBehaviour
      
 
     //change cofing of control
-    void OnChangeWASD(InputValue x)
-    {
-        Change();
-    }
+    //void OnChangeWASD(InputValue x)
+    //{
+    //    Change();
+    //}
    
-    void OnChangeC(InputValue x)
-    {
+    //void OnChangeC(InputValue x)
+    //{
 
-        Change();
-    }
+    //    Change();
+    //}
 
-    public void Change()
-    {
-        if (Time.timeScale != 0)
-        {
-            if (config == Config.WASD)
-            {
-                config = Config.TFGH;
-            }
-            else if (config == Config.TFGH)
-            {
-                config = Config.CNTLR;
-            }
-            else
-            {
-                config = Config.WASD;
-            }
-            currentConfig.GetComponent<TMP_Text>().text = config.ToString();
+    //public void Change()
+    //{
+    //    if (Time.timeScale != 0)
+    //    {
+    //        if (config == Config.WASD)
+    //        {
+    //            config = Config.TFGH;
+    //        }
+    //        else if (config == Config.TFGH)
+    //        {
+    //            config = Config.CNTLR;
+    //        }
+    //        else
+    //        {
+    //            config = Config.WASD;
+    //        }
+    //        currentConfig.GetComponent<TMP_Text>().text = config.ToString();
 
-        }
-    }
+    //    }
+    //}
 }
