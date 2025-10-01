@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using static PlayerC;
 using static UnityEngine.Timeline.DirectorControlPlayable;
 
+
+//For project, this script not been use.
 public class UI_rebinding : MonoBehaviour
 {
 
