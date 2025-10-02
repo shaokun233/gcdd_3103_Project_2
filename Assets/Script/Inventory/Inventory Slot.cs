@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +9,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         if (transform.childCount == 0)
         {
-            Debug.Log("www");
             GameObject dorp = eventData.pointerDrag;
             DraggableItem draggableItem = dorp.GetComponent<DraggableItem>();
             draggableItem.parentAfterDrage = transform;
@@ -23,6 +23,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             draggableItem.parentAfterDrage = transform;
 
         }
+       
 
     }
 

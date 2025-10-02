@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,12 +6,33 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
+    //do not use start method for isitem and me.
+    //because in invetory UI M, we gen UI the ative this.
+    //is use start it will overrider  isitem and me.
+    public bool isitem = false;
     public Image image;
+    public ItemDataCanChange me = null;
     [HideInInspector] public Transform parentAfterDrage;
+
+    
+    void OnEnable()
+    {
+        if (me != null)
+        {
+            Debug.Log(me.item.name);
+        }
+        if (!isitem)
+        {
+            image.raycastTarget = false;
+        }
+        else
+        {
+            image.raycastTarget = true;
+        }
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        image = transform.GetComponent<Image>();
-        Debug.Log("start");
         //ÉùÃ÷¸¸¼¶
         parentAfterDrage = transform.parent;
         //set canva as parent
@@ -22,27 +44,27 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("On drag");
         transform.position = Input.mousePosition;
 
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End");
         transform.SetParent(parentAfterDrage);
         image.raycastTarget = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+ 
 
     // Update is called once per frame
     void Update()
     {
+        if(me  != null)
+        {
+            image.sprite = me.item.icon;
+            transform.GetChild(0).GetComponent<TMP_Text>().text = me.count.ToString();
 
+        }
     }
 }
