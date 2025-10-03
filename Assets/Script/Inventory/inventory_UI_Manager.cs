@@ -11,7 +11,9 @@ public class inventory_UI_Manager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private GameObject inventory_ui;
+    [SerializeField] private GameObject quick_item;
     private Inventory inventory = new Inventory();
+    private int selectItem = 0;
 
 
     void OnOpenInventory()
@@ -21,7 +23,7 @@ public class inventory_UI_Manager : MonoBehaviour
         if( isOpen)
         {
             setinvetory();
-
+            setQuickItemBar();
         }
         else
         {
@@ -31,10 +33,72 @@ public class inventory_UI_Manager : MonoBehaviour
 
         inventory.toString();
         inventory_ui.SetActive(!isOpen);
-       
-
     }
 
+    void OnItem1()
+    {
+        selectItem = 0;
+        chooseQuickItem(0, selectItem);
+
+
+
+    }
+    void OnItem2()
+    {
+        selectItem = 1;
+        chooseQuickItem(0, selectItem);
+
+
+    }
+    void OnItem3()
+    {
+        selectItem = 2;
+
+        chooseQuickItem(0, selectItem);
+
+
+    }
+    void OnItem4()
+    {
+        selectItem = 3;
+         chooseQuickItem(0, selectItem);
+    }
+
+    public void UseItem()
+    {
+        if(inventory.GetItem(selectItem) != null)
+        {
+            ItemDataCanChange temp = inventory.GetItem(selectItem);
+
+            temp.item.Use(this.transform.GetChild(0).GetChild(0));
+
+            temp.count -= 1;
+            if (temp.count == 0)
+            {
+                inventory.Remove(selectItem);
+                setQuickItemBar();
+            }
+        }
+        
+        
+    }
+
+    void chooseQuickItem(int x,int index)
+    {
+        if(x > 3)
+            return;
+        if(x == index)
+        {
+            FindQuickItem(x).GetComponent<quick_item_display>().selected();
+
+        }
+        else
+        {
+            FindQuickItem(x).GetComponent<quick_item_display>().unSelected();
+        }
+        chooseQuickItem(x+1,index);
+
+    }
     void gen_inv_UI()
     {
         for(int i = 0; i < inventory.size(); i++)
@@ -62,31 +126,42 @@ public class inventory_UI_Manager : MonoBehaviour
         Transform temp = x;
        temp.GetComponent<DraggableItem>().me = y;
         temp.GetComponent<DraggableItem>().isitem = true;
-
     }
-    //x can only be 0 to 11
+
+
+    //After player move item in inventory, change the place of inventory
     void setinvetory()
     {
         for (int i = 0; i < 12; i++)
         {
-            if(FindItem(i).GetComponent<DraggableItem>().me == null)
-            {
-                Debug.Log(i + "is null");
-            }
+           
             inventory.setItem(FindItem(i).GetComponent<DraggableItem>().me, i);
         }
     }
+
+    //to set quick item bar
+
+    void setQuickItemBar()
+    {
+        for( int i = 0;i < 4; i++)
+        {
+            FindQuickItem(i).GetComponent<quick_item_display>().setItem(inventory.GetItem(i));
+        }
+    }
+
     Transform FindItem(int x)
     {
        
         return inventory_ui.transform.GetChild(0).GetChild(x).GetChild(0);
-        
     }
-    InventorySlot FindSlot(int x)
+    Transform FindQuickItem(int x)
     {
-        return inventory_ui.transform.GetChild(0).GetChild(x).GetComponent<InventorySlot>();
+        return quick_item.transform.GetChild(x).GetChild(0);
     }
+    
 
+
+    //to store the item
     private void OnCollisionEnter(Collision collision)
     {
         if (collision != null && collision.transform.tag == "Item")
@@ -95,6 +170,7 @@ public class inventory_UI_Manager : MonoBehaviour
             if (k)
             {
                 Destroy(collision.transform.gameObject);
+                setQuickItemBar();
             }
         }
     }

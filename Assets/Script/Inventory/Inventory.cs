@@ -77,6 +77,11 @@ public class Inventory
          return Itemlist[x];
 
     }
+    
+    public void Remove(int x)
+    {
+        Itemlist[x] = null;
+    }
 
 
     public bool isfull()

@@ -89,6 +89,42 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Item1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3124689-858d-48b8-9b83-e4896a8e8ffa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item2"",
+                    ""type"": ""Button"",
+                    ""id"": ""76b00d35-69e7-4e53-935a-ac18c7034902"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item3"",
+                    ""type"": ""Button"",
+                    ""id"": ""2eb86972-abe5-4270-9f03-df91ac7f404a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item4"",
+                    ""type"": ""Button"",
+                    ""id"": ""c11de758-e0e8-4820-bec6-5707b02c4e73"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,7 +252,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -254,6 +290,50 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad;Joystick"",
                     ""action"": ""Look1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ead1671a-4185-4a59-a285-2e6d1196a7ba"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Item1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6ec77ed-7c17-4d5c-8555-a67ce9cc4a34"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""471c0428-5825-41f7-89be-6599cc343850"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aa31c20-4ed6-4089-9203-4da2ba9d4987"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -440,6 +520,10 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Fire1 = m_Player.FindAction("Fire1", throwIfNotFound: true);
         m_Player_Look1 = m_Player.FindAction("Look1", throwIfNotFound: true);
+        m_Player_Item1 = m_Player.FindAction("Item1", throwIfNotFound: true);
+        m_Player_Item2 = m_Player.FindAction("Item2", throwIfNotFound: true);
+        m_Player_Item3 = m_Player.FindAction("Item3", throwIfNotFound: true);
+        m_Player_Item4 = m_Player.FindAction("Item4", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -521,6 +605,10 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Fire1;
     private readonly InputAction m_Player_Look1;
+    private readonly InputAction m_Player_Item1;
+    private readonly InputAction m_Player_Item2;
+    private readonly InputAction m_Player_Item3;
+    private readonly InputAction m_Player_Item4;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -532,6 +620,10 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Fire1 => m_Wrapper.m_Player_Fire1;
         public InputAction @Look1 => m_Wrapper.m_Player_Look1;
+        public InputAction @Item1 => m_Wrapper.m_Player_Item1;
+        public InputAction @Item2 => m_Wrapper.m_Player_Item2;
+        public InputAction @Item3 => m_Wrapper.m_Player_Item3;
+        public InputAction @Item4 => m_Wrapper.m_Player_Item4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -562,6 +654,18 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Look1.started += instance.OnLook1;
             @Look1.performed += instance.OnLook1;
             @Look1.canceled += instance.OnLook1;
+            @Item1.started += instance.OnItem1;
+            @Item1.performed += instance.OnItem1;
+            @Item1.canceled += instance.OnItem1;
+            @Item2.started += instance.OnItem2;
+            @Item2.performed += instance.OnItem2;
+            @Item2.canceled += instance.OnItem2;
+            @Item3.started += instance.OnItem3;
+            @Item3.performed += instance.OnItem3;
+            @Item3.canceled += instance.OnItem3;
+            @Item4.started += instance.OnItem4;
+            @Item4.performed += instance.OnItem4;
+            @Item4.canceled += instance.OnItem4;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -587,6 +691,18 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Look1.started -= instance.OnLook1;
             @Look1.performed -= instance.OnLook1;
             @Look1.canceled -= instance.OnLook1;
+            @Item1.started -= instance.OnItem1;
+            @Item1.performed -= instance.OnItem1;
+            @Item1.canceled -= instance.OnItem1;
+            @Item2.started -= instance.OnItem2;
+            @Item2.performed -= instance.OnItem2;
+            @Item2.canceled -= instance.OnItem2;
+            @Item3.started -= instance.OnItem3;
+            @Item3.performed -= instance.OnItem3;
+            @Item3.canceled -= instance.OnItem3;
+            @Item4.started -= instance.OnItem4;
+            @Item4.performed -= instance.OnItem4;
+            @Item4.canceled -= instance.OnItem4;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -736,6 +852,10 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnFire1(InputAction.CallbackContext context);
         void OnLook1(InputAction.CallbackContext context);
+        void OnItem1(InputAction.CallbackContext context);
+        void OnItem2(InputAction.CallbackContext context);
+        void OnItem3(InputAction.CallbackContext context);
+        void OnItem4(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

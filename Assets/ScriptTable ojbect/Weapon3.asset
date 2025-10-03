@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 769893b6e2b561f4da0b06bc39b2cc45, type: 3}
-  m_Name: Weapon2
+  m_Name: Weapon3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: ac7cbbf58db131249ae34c00bece13b1, type: 3}
-  item: {fileID: 7936568820759590197, guid: a005b0a39632cf14a832f8e131c045fa, type: 3}
-  itemID: 1
-  itemName: weapon2
-  max: 10
-  Danmage: 20
+  icon: {fileID: 0}
+  item: {fileID: 0}
+  itemID: 3
+  itemName: weapon3
+  max: 5
+  Danmage: 30

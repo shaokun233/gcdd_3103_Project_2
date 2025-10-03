@@ -186,34 +186,28 @@ public class PlayerC : MonoBehaviour
     //For keyboard
     void OnFire(InputValue fire)
     {
-        int random = Random.Range(0, 2);
-        if(random == 0)
+       if(Time.timeScale != 0)
         {
-            GameObject b = Instantiate(bullit, tfb.position, tfb.rotation);
-        }
-        else
-        {
-            GameObject b = Instantiate(bullit2, tfb.position, tfb.rotation);
-
+            this.GetComponent<inventory_UI_Manager>().UseItem();
 
         }
     }
     //For controller
-    void OnFire1()
-    {
+    //void OnFire1()
+    //{
 
-        int random = Random.Range(0, 2);
-        if (random == 0)
-        {
-            GameObject b = Instantiate(bullit, tfb.position, tfb.rotation);
-        }
-        else
-        {
-            GameObject b = Instantiate(bullit2, tfb.position, tfb.rotation);
+    //    int random = Random.Range(0, 2);
+    //    if (random == 0)
+    //    {
+    //        GameObject b = Instantiate(bullit, tfb.position, tfb.rotation);
+    //    }
+    //    else
+    //    {
+    //        GameObject b = Instantiate(bullit2, tfb.position, tfb.rotation);
 
 
-        }
-    }
+    //    }
+    //}
      
 
     //change cofing of control

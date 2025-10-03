@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Weapon1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 974db79a87cf56a4dad27f71c75e62fa, type: 3}
-  item: {fileID: 0}
+  item: {fileID: 3342860900693378849, guid: 65306df5995a5754481b2e1a5a3dd86e, type: 3}
   itemID: 0
-  name: first wepon
+  itemName: weapon1
   max: 5
   Danmage: 10
