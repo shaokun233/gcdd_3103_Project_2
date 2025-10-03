@@ -64,7 +64,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             image.sprite = me.item.icon;
             transform.GetChild(0).GetComponent<TMP_Text>().text = me.count.ToString();
-
+        }
+        else
+        {
+            image.sprite = null;
+            transform.GetChild(0).GetComponent<TMP_Text>().text = "";
         }
     }
 }
