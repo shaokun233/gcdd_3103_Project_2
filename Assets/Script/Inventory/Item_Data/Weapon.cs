@@ -8,6 +8,7 @@ public class Weapon : Item
     
     public override void Use(Transform tf)
     {
+        tf = tf.GetChild(0).GetChild(0);
         GameObject temp = Instantiate(item, tf.position, tf.rotation);
         temp.GetComponent<bullet>().weapon_data = this;
     }

@@ -76,8 +76,8 @@ public class PlayerC : MonoBehaviour
         }
         healthText.text = health.ToString();
 
-        float x = (float)(health * 0.01);
-        float y = 200 * x;
+        float ratio = (float)health / (float)MaxHealth;
+        float y = 200 * ratio;
         healthbar.sizeDelta = new Vector2(y, healthbar.sizeDelta.y);
 
     }

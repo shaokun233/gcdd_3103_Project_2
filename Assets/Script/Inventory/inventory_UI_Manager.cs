@@ -70,7 +70,7 @@ public class inventory_UI_Manager : MonoBehaviour
         {
             ItemDataCanChange temp = inventory.GetItem(selectItem);
 
-            temp.item.Use(this.transform.GetChild(0).GetChild(0));
+            temp.item.Use(this.transform);
 
             temp.count -= 1;
             if (temp.count == 0)
@@ -119,6 +119,7 @@ public class inventory_UI_Manager : MonoBehaviour
     public void genUI(Transform x)
     {
         Transform temp = x;
+        temp.GetComponent<DraggableItem>().me = null;
         temp.GetComponent<DraggableItem>().isitem = false;
     }
     public void genUI(Transform x, ItemDataCanChange y)
