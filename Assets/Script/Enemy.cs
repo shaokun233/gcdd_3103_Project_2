@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class Enemy : MonoBehaviour
     private TMP_Text Health;     // the number show on the HealthBar
     private Transform Player;    //the Player place
 
+    protected NavMeshAgent navMeshAgent;
+    protected Transform player;
+
     // the get the HealthBar,Canava,Player, and Health
     void Start()
     {
+        player = GameObject.FindGameObjectsWithTag("player")[0].transform;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
         HealthBar = transform.GetChild(0).GetChild(1);
         Canava = transform.GetChild(0);
         Player = GameObject.Find("player").transform;
@@ -36,6 +43,14 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
             Destroy(this.gameObject);
+
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.SetDestination(player.position);
+        }
+
+
+
     }
 
    
