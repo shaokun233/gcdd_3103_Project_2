@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     public int health; // the health enemy have
 
@@ -28,30 +28,25 @@ public class Enemy : MonoBehaviour
     }
 
 
-    //to make sure the enemy's health bar is always face to player,
-    //make health bar shurt when enemy health get lower,
-    //destory enemy when health is or lower then zero.
-    void Update()
-    {
-        Canava.LookAt(Player.position);
 
+    void Update()
+    { //to make sure the enemy's health bar is always face to player,
+
+        Canava.LookAt(Player.position);
+        //make health bar shurt when enemy health get lower,
         Health.text = health.ToString();
         float x = (float)(health * 0.01);
         float y = 190 * x;
         RectTransform HB = HealthBar.GetComponent<RectTransform>();
-        HB.sizeDelta = new Vector2( y, HB.sizeDelta.y);
-
+        HB.sizeDelta = new Vector2(y, HB.sizeDelta.y);
+        //destory enemy when health is or lower then zero.
         if (health <= 0)
             Destroy(this.gameObject);
+    }
 
-        if (navMeshAgent.enabled)
-        {
-            navMeshAgent.SetDestination(player.position);
-        }
-
-
+    protected virtual void Bbhavior()
+    {
 
     }
 
-   
 }
