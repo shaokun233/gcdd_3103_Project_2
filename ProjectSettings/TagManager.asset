@@ -7,6 +7,7 @@ TagManager:
   - player
   - Enemy
   - Item
+  - obstacle
   layers:
   - Default
   - TransparentFX

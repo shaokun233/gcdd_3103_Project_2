@@ -81,13 +81,11 @@ public class PlayerC : MonoBehaviour
         healthbar.sizeDelta = new Vector2(y, healthbar.sizeDelta.y);
 
     }
-    private void OnCollisionEnter(Collision collision)
+   
+    public void getHit(int damage)
     {
-        if(collision.transform.tag == "Enemy")
-        {
-            LastBeenHit();
-            health -= 5;
-        }
+        LastBeenHit();
+        health  -= damage;
     }
 
 
@@ -192,6 +190,9 @@ public class PlayerC : MonoBehaviour
 
         }
     }
+
+    //Not use for this project
+
     //For controller
     //void OnFire1()
     //{
