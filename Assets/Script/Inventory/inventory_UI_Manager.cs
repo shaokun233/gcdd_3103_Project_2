@@ -35,28 +35,21 @@ public class inventory_UI_Manager : MonoBehaviour
         inventory_ui.SetActive(!isOpen);
     }
 
+    // For select quick item
     void OnItem1()
     {
         selectItem = 0;
         chooseQuickItem(0, selectItem);
-
-
-
     }
     void OnItem2()
     {
         selectItem = 1;
         chooseQuickItem(0, selectItem);
-
-
     }
     void OnItem3()
     {
         selectItem = 2;
-
         chooseQuickItem(0, selectItem);
-
-
     }
     void OnItem4()
     {
@@ -64,6 +57,7 @@ public class inventory_UI_Manager : MonoBehaviour
          chooseQuickItem(0, selectItem);
     }
 
+    //to use seleced item
     public void UseItem()
     {
         if(inventory.GetItem(selectItem) != null)
@@ -82,6 +76,9 @@ public class inventory_UI_Manager : MonoBehaviour
         
         
     }
+
+
+    // For select quick item
 
     void chooseQuickItem(int x,int index)
     {
@@ -111,22 +108,37 @@ public class inventory_UI_Manager : MonoBehaviour
             }
             else
             {
+
                 genUI(FindItem(i));
+                if (i > 5)
+                {
+                    genUI(FindItem(i), false);
+
+                }
+              
             }
+            
         }
     }
-    
+    public void genUI(Transform x,bool isoff)
+    {
+        Transform temp = x;
+        temp.parent.gameObject.SetActive(isoff);
+
+    }
     public void genUI(Transform x)
     {
         Transform temp = x;
         temp.GetComponent<DraggableItem>().me = null;
         temp.GetComponent<DraggableItem>().isitem = false;
+        temp.parent.gameObject.SetActive(true);
     }
     public void genUI(Transform x, ItemDataCanChange y)
     {
         Transform temp = x;
-       temp.GetComponent<DraggableItem>().me = y;
+        temp.GetComponent<DraggableItem>().me = y;
         temp.GetComponent<DraggableItem>().isitem = true;
+        temp.parent.gameObject.SetActive(true);
     }
 
 

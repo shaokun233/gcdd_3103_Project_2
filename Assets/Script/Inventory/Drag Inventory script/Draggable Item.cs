@@ -18,10 +18,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     void OnEnable()
     {
-        if (me != null)
-        {
-            Debug.Log(me.item.name);
-        }
+      
         if (!isitem)
         {
             image.raycastTarget = false;
@@ -54,7 +51,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
  
 
     // Update is called once per frame
@@ -64,11 +60,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             image.sprite = me.item.icon;
             transform.GetChild(0).GetComponent<TMP_Text>().text = me.count.ToString();
+            transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = me.item.itemName;
         }
         else
         {
             image.sprite = null;
             transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+            transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = "";
+
         }
     }
 }

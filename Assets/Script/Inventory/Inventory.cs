@@ -32,14 +32,13 @@ public class Inventory
 
     public void setItem(ItemDataCanChange temp,int index)
     {
-        if(temp != null){
-            Debug.Log(temp.item.name );
-            Debug.Log(index);
-        }
-        else
-        {
-            Debug.Log(index);
-        }
+        //if(temp != null){
+        //    Debug.Log(temp.item.name + " " + index);
+        //}
+        //else
+        //{
+        //    Debug.Log(index);
+        //}
         Itemlist[index] = temp;
     }
 
@@ -63,10 +62,14 @@ public class Inventory
 
     public void toString()
     {
+        int i = 0;
         foreach(ItemDataCanChange x in Itemlist)
         {
-            if(x != null)
-            Debug.Log(x.item.name);
+            i++;
+            if (x != null)
+                Debug.Log(i + x.item.name);
+            else 
+                Debug.Log(i + "is empty");
         }
     }
 
