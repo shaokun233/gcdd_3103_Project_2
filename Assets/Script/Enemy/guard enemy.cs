@@ -7,20 +7,20 @@ public class guardenemy : Enemy
     public override void attack()
     {
         base.attack();
-        Vector3 direction = (player.transform.position - this.transform.position).normalized;
-        Rigidbody playrb = player.GetComponent<Rigidbody>();
+        Vector3 direction = (Player.transform.position - this.transform.position).normalized;
+        Rigidbody playrb = Player.GetComponent<Rigidbody>();
         playrb.AddForce(direction * 5,ForceMode.Impulse);
     }
 
     public override void moveBywaypoint()
     {
-        float distance = Vector3.Distance(player.transform.position, this.transform.transform.position);
+        float distance = Vector3.Distance(Player.transform.position, this.transform.transform.position);
 
         if (distance < attackRange)
         {
             attack();
             navMeshAgent.SetDestination(this.transform.position);
-            this.transform.LookAt(player);
+            this.transform.LookAt(Player);
             hasReachWaypoint = true;
             return;
         }

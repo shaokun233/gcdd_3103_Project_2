@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Purchasing;
 using UnityEngine;
@@ -11,11 +12,10 @@ public abstract class Enemy : MonoBehaviour
     private Transform HealthBar; //The HealthBar on the enemy
     private Transform Canava;    //the Canave on the enemy
     private TMP_Text Health;     // the number show on the HealthBar
-    private Transform Player;    //the Player place
+    protected Transform Player;    //the Player place
     private float lastbeenHit;
 
     protected NavMeshAgent navMeshAgent;
-    protected Transform player; //player place
     public Transform[] waypoints; // waypoint for enemy
     protected int currentWayPoint;
     protected bool isReturning = false;
@@ -26,6 +26,8 @@ public abstract class Enemy : MonoBehaviour
     protected float lastAttack;
     public float attackRate;
 
+    public static List<Enemy> allEnemies = new List<Enemy>();//A list have all enemy in the scenes, use for Friend class
+
 
     // the get the HealthBar,Canava,Player, and Health
     void Start()
@@ -33,7 +35,6 @@ public abstract class Enemy : MonoBehaviour
         lastAttack = 0;
         currentWayPoint  = 0;
         lastbeenHit = -10;
-        player = GameObject.FindGameObjectsWithTag("player")[0].transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         HealthBar = transform.GetChild(0).GetChild(1);
@@ -43,8 +44,13 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
- 
-     protected virtual void Update()
+    //Add or remove enemy when it create or destory
+    private void OnEnable()=> allEnemies.Add(this);
+    private void OnDisable() =>allEnemies.Remove(this);
+
+    public static List<Enemy> GetEnemies() { return allEnemies; }
+
+    protected virtual void Update()
     {
 
         displayhealthbar();

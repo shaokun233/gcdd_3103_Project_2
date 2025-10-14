@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Friend_bullet : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Weapon weapon_data;
     void Awake()
     {
         Destroy(this.gameObject, 5f);
@@ -21,7 +20,7 @@ public class bullet : MonoBehaviour
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             Debug.Log("it Enemy");
-            enemy.getHit(weapon_data.Danmage);
+            enemy.getHit(5);
 
             Destroy(this.gameObject);
         }

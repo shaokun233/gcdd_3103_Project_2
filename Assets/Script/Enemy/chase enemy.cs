@@ -5,8 +5,8 @@ public class chaseenemy : Enemy
 
     public float chaseRange;
 
-    public GameObject enemybullit;
-    public GameObject bullit_respown;
+    public GameObject enemybullet;
+    public GameObject bulletRespawn;
 
     
 
@@ -20,17 +20,17 @@ public class chaseenemy : Enemy
         if(attackRate< Time.time - lastAttack)
         {
             lastAttack = Time.time;
-           Instantiate(enemybullit, bullit_respown.transform);
+           Instantiate(enemybullet, bulletRespawn.transform);
         }
     }
 
     void Behavior()
     {
-        float distance = Vector3.Distance(player.transform.position, this.transform.transform.position);
+        float distance = Vector3.Distance(Player.transform.position, this.transform.transform.position);
 
         if (distance < chaseRange)
         {
-            navMeshAgent.SetDestination(player.position);
+            navMeshAgent.SetDestination(Player.position);
         }
         if (distance < attackRange)
         {
