@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -120,7 +119,7 @@ public abstract class Enemy : MonoBehaviour
                 if(currentWayPoint == waypoints.Length)
                 {
                     isReturning = true;
-                    currentWayPoint-=waypoints.Length-2;
+                    currentWayPoint =waypoints.Length-2;
                 }
              }
             else
@@ -134,7 +133,7 @@ public abstract class Enemy : MonoBehaviour
                 if (currentWayPoint == -1)
                 {
                     isReturning = false;
-                    currentWayPoint+=1;
+                    currentWayPoint =1;
                 }
             }
 

@@ -33,7 +33,7 @@ public class Friend : MonoBehaviour
     }
     void FindclosestEnemy()
     {
-        closestEnemy = allEnemies.OrderBy(e => Vector3.Distance(transform.position, e.transform.position)).FirstOrDefault();
+        closestEnemy = allEnemies.OrderBy(e => Vector3.Distance(player.position, e.transform.position)).FirstOrDefault();
     }
 
     // Behavior of this AI
@@ -43,7 +43,7 @@ public class Friend : MonoBehaviour
 
         FindclosestEnemy();
         if (closestEnemy != null) {
-            float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
+            float distance = Vector3.Distance(player.position, closestEnemy.transform.position);
             if (distance <= attackRange) {
                 attack();
 

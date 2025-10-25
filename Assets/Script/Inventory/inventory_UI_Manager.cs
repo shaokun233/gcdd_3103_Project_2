@@ -1,9 +1,6 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-using static UnityEditor.Progress;
 
 
 
@@ -14,6 +11,9 @@ public class inventory_UI_Manager : MonoBehaviour
     [SerializeField] private GameObject quick_item;
     private Inventory inventory = new Inventory();
     private int selectItem = 0;
+    [SerializeField] private GameObject full;
+
+    private bool isFull = false;
 
 
     void OnOpenInventory()
@@ -70,6 +70,7 @@ public class inventory_UI_Manager : MonoBehaviour
             if (temp.count == 0)
             {
                 inventory.Remove(selectItem);
+                isFull = false;
                 setQuickItemBar();
             }
         }
@@ -77,6 +78,10 @@ public class inventory_UI_Manager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        full.SetActive(isFull);
+    }
 
     // For select quick item
 
@@ -185,6 +190,12 @@ public class inventory_UI_Manager : MonoBehaviour
                 Destroy(collision.transform.gameObject);
                 setQuickItemBar();
             }
+            else
+            {
+                isFull = true;
+            }
+            
+           
         }
     }
   

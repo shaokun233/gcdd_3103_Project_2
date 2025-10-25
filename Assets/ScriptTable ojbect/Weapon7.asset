@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769893b6e2b561f4da0b06bc39b2cc45, type: 3}
+  m_Name: Weapon7
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: c10162ceb79898b4abea0143a5017a33, type: 3}
+  item: {fileID: 3055046752583074455, guid: 8fff0e8ef81caca41b591da683537f19, type: 3}
+  itemID: 12
+  itemName: weapon7
+  max: 2
+  Danmage: 100
